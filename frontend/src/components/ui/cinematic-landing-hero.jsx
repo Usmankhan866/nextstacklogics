@@ -4,12 +4,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import axios from "axios";
 import { toast } from "sonner";
 import {
-  Rocket,
   ShieldCheck,
   Flame,
   Users,
   ArrowRight,
   CheckCircle2,
+  Globe,
+  ShoppingCart,
+  Cloud,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NexMark } from "@/components/NexMark";
@@ -30,8 +32,8 @@ const INJECTED_STYLES = `
   .bg-grid-theme {
       background-size: 60px 60px;
       background-image:
-          linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+          linear-gradient(to right, rgba(15, 23, 42, 0.06) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(15, 23, 42, 0.06) 1px, transparent 1px);
       mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
       -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
   }
@@ -39,21 +41,21 @@ const INJECTED_STYLES = `
   .transform-style-3d { transform-style: preserve-3d; }
 
   .text-3d-matte {
-      color: #F8FAFC;
+      color: #0F172A;
       text-shadow:
-          0 10px 30px rgba(148, 197, 255, 0.20),
-          0 2px 4px rgba(148, 197, 255, 0.10);
+          0 10px 30px rgba(15, 23, 42, 0.16),
+          0 2px 4px rgba(15, 23, 42, 0.08);
   }
 
   .text-silver-matte {
-      background: linear-gradient(180deg, #F8FAFC 0%, rgba(248, 250, 252, 0.4) 100%);
+      background: linear-gradient(180deg, #0F172A 0%, rgba(15, 23, 42, 0.45) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       transform: translateZ(0);
       filter:
-          drop-shadow(0px 10px 20px rgba(148, 197, 255, 0.15))
-          drop-shadow(0px 2px 4px rgba(148, 197, 255, 0.10));
+          drop-shadow(0px 10px 20px rgba(15, 23, 42, 0.12))
+          drop-shadow(0px 2px 4px rgba(15, 23, 42, 0.08));
   }
 
   .text-card-silver-matte {
@@ -141,6 +143,23 @@ const INJECTED_STYLES = `
       transform: translateY(1px);
       background: linear-gradient(180deg, #F1F5F9 0%, #E2E8F0 100%);
       box-shadow: 0 0 0 1px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1), inset 0 3px 6px rgba(0,0,0,0.1), inset 0 0 0 1px rgba(0,0,0,0.02);
+  }
+
+  .btn-modern-dark {
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+      color: #FFFFFF;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.2), 0 2px 4px rgba(15,23,42,0.2), 0 12px 24px -4px rgba(15,23,42,0.35), inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -3px 6px rgba(0,0,0,0.3);
+  }
+  .btn-modern-dark:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(180deg, #334155 0%, #1E293B 100%);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.25), 0 6px 12px -2px rgba(15,23,42,0.25), 0 20px 32px -6px rgba(15,23,42,0.4), inset 0 1px 1px rgba(255,255,255,0.2), inset 0 -3px 6px rgba(0,0,0,0.3);
+  }
+  .btn-modern-dark:active {
+      transform: translateY(1px);
+      background: #0F172A;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.3), inset 0 3px 8px rgba(0,0,0,0.5);
   }
 
   .progress-ring {
@@ -309,7 +328,6 @@ export const CinematicHero = ({
           { y: 0, autoAlpha: 1, scale: 1, stagger: 0.15, ease: "back.out(1.2)", duration: 1.5 },
           "-=1.5"
         )
-        .to(".progress-ring", { strokeDashoffset: 60, duration: 2, ease: "power3.inOut" }, "-=1.2")
         .to(
           ".counter-val",
           { innerHTML: metricValue, snap: { innerHTML: 1 }, duration: 2, ease: "expo.out" },
@@ -384,7 +402,7 @@ export const CinematicHero = ({
       <style dangerouslySetInnerHTML={{ __html: INJECTED_STYLES }} />
       <div className="film-grain" aria-hidden="true" />
       <div
-        className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(10,25,60,0.85)_0%,transparent_65%)]"
+        className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(59,130,246,0.10)_0%,transparent_60%)]"
         aria-hidden="true"
       />
       <div className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
@@ -392,21 +410,21 @@ export const CinematicHero = ({
       {/* Fixed brand header */}
       <header className="fixed top-0 inset-x-0 z-[60] flex items-center justify-between px-5 md:px-10 py-4 pointer-events-none">
         <div data-testid="brand-logo" className="flex items-center gap-3 pointer-events-auto">
-          <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/40">
-            <NexMark className="w-5 h-5 text-white" />
+          <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 backdrop-blur-xl flex items-center justify-center shadow-md shadow-slate-900/10">
+            <NexMark className="w-5 h-5 text-slate-900" />
           </div>
           <div className="leading-tight">
-            <div className="font-display font-extrabold tracking-tight text-white text-base">
+            <div className="font-display font-extrabold tracking-tight text-slate-900 text-base">
               NexStack
             </div>
-            <div className="text-[9px] font-mono uppercase tracking-[0.3em] text-cyan-300/70">
+            <div className="text-[9px] font-mono uppercase tracking-[0.3em] text-cyan-600">
               Logics
             </div>
           </div>
         </div>
         <div
           data-testid="nav-launch-badge"
-          className="pointer-events-auto inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl px-4 py-2 text-[10px] font-mono uppercase tracking-[0.25em] text-white/80 shadow-lg shadow-black/40"
+          className="pointer-events-auto inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white/80 backdrop-blur-xl px-4 py-2 text-[10px] font-mono uppercase tracking-[0.25em] text-slate-700 shadow-md shadow-slate-900/5"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-60" />
@@ -436,11 +454,11 @@ export const CinematicHero = ({
       <div className="cta-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 gsap-reveal pointer-events-auto will-change-transform">
         <div
           data-testid="cta-launch-badge"
-          className="inline-flex items-center gap-2.5 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-5 py-2 text-[11px] font-mono uppercase tracking-[0.3em] text-cyan-300 mb-8"
+          className="inline-flex items-center gap-2.5 rounded-full border border-cyan-500/30 bg-cyan-50 px-5 py-2 text-[11px] font-mono uppercase tracking-[0.3em] text-cyan-600 mb-8"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-60" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-500 opacity-60" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
           </span>
           Launching Soon
         </div>
@@ -464,13 +482,13 @@ export const CinematicHero = ({
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@company.com"
             aria-label="Email address"
-            className="w-full sm:flex-1 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-4 text-base text-white placeholder:text-slate-500 outline-none focus:border-cyan-400/60 focus:ring-2 focus:ring-cyan-400/30 transition-all shadow-lg shadow-black/40"
+            className="w-full sm:flex-1 rounded-2xl border border-slate-300 bg-white px-6 py-4 text-base text-slate-900 placeholder:text-slate-400 outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-400/30 transition-all shadow-md shadow-slate-900/5"
           />
           <button
             data-testid="subscribe-submit-button"
             type="submit"
             disabled={status === "loading"}
-            className="btn-modern-light rounded-2xl px-8 py-4 font-display font-bold text-base inline-flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-60"
+            className="btn-modern-dark rounded-2xl px-8 py-4 font-display font-bold text-base inline-flex items-center justify-center gap-2 whitespace-nowrap disabled:opacity-60"
           >
             {status === "loading" ? "Joining..." : "Notify Me"}
             <ArrowRight className="w-4 h-4" />
@@ -481,13 +499,13 @@ export const CinematicHero = ({
           {status === "success" && (
             <p
               data-testid="subscribe-success-message"
-              className="inline-flex items-center gap-2 text-sm md:text-base text-cyan-300 font-medium"
+              className="inline-flex items-center gap-2 text-sm md:text-base text-cyan-600 font-medium"
             >
               <CheckCircle2 className="w-4 h-4" /> {feedback}
             </p>
           )}
           {status === "error" && (
-            <p data-testid="subscribe-error-message" className="text-sm md:text-base text-red-400 font-medium">
+            <p data-testid="subscribe-error-message" className="text-sm md:text-base text-red-600 font-medium">
               {feedback}
             </p>
           )}
@@ -536,70 +554,65 @@ export const CinematicHero = ({
                       <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,240,255,0.8)] animate-pulse" />
                     </div>
 
-                    {/* NexStack dashboard */}
-                    <div className="relative w-full h-full pt-12 px-5 pb-8 flex flex-col">
-                      <div className="phone-widget flex justify-between items-center mb-8" data-testid="phone-header-widget">
-                        <div className="flex flex-col">
-                          <span className="text-[10px] text-neutral-400 uppercase tracking-widest font-bold mb-1">
-                            NexStack HQ
-                          </span>
-                          <span className="font-display text-xl font-bold tracking-tight text-white drop-shadow-md">
-                            Dashboard
-                          </span>
+                    {/* NexStack website mock */}
+                    <div className="relative w-full h-full pt-12 px-4 pb-8 flex flex-col bg-[#F8FAFC] text-left text-slate-900">
+                      <div className="phone-widget flex items-center justify-between mb-5" data-testid="phone-mini-nav">
+                        <div className="flex items-center gap-1.5">
+                          <NexMark className="w-4 h-4 text-slate-900" />
+                          <span className="font-display text-[12px] font-extrabold tracking-tight text-slate-900">NexStack</span>
                         </div>
-                        <div className="w-9 h-9 rounded-full bg-white/5 border border-white/10 shadow-lg shadow-black/50 flex items-center justify-center">
-                          <NexMark className="w-4 h-4 text-white" />
+                        <div className="w-6 h-6 rounded-lg border border-slate-200 bg-white shadow-sm flex flex-col items-center justify-center gap-[3px]">
+                          <span className="w-3 h-[1.5px] bg-slate-700 rounded-full" />
+                          <span className="w-3 h-[1.5px] bg-slate-700 rounded-full" />
                         </div>
                       </div>
 
-                      <div
-                        className="phone-widget relative w-44 h-44 mx-auto flex items-center justify-center mb-8 drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]"
-                        data-testid="dashboard-stats-widget"
-                      >
-                        <svg className="absolute inset-0 w-full h-full" aria-hidden="true">
-                          <circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="12" />
-                          <circle className="progress-ring" cx="88" cy="88" r="64" fill="none" stroke="#00F0FF" strokeWidth="12" />
-                        </svg>
-                        <div className="text-center z-10 flex flex-col items-center">
-                          <span className="counter-val font-display text-4xl font-extrabold tracking-tighter text-white">
-                            0
-                          </span>
-                          <span className="text-[8px] text-cyan-200/50 uppercase tracking-[0.1em] font-bold mt-0.5">
-                            {metricLabel}
-                          </span>
+                      <div className="phone-widget mb-5" data-testid="phone-mini-hero">
+                        <div className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-50 px-2 py-[3px] text-[7px] font-mono uppercase tracking-[0.18em] text-cyan-600 font-bold mb-2">
+                          <span className="w-1 h-1 rounded-full bg-cyan-500" />
+                          Full-Stack Tech Partner
+                        </div>
+                        <div className="font-display text-[21px] leading-[1.08] font-extrabold tracking-tight text-slate-900">
+                          Empower Today.
+                          <br />
+                          <span className="text-slate-400">Own Tomorrow.</span>
+                        </div>
+                        <div className="mt-2.5 h-1.5 w-28 bg-slate-200 rounded-full" />
+                        <div className="mt-1.5 h-1.5 w-20 bg-slate-100 rounded-full" />
+                        <div className="mt-3 inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-3 py-2 text-[9px] font-bold text-white">
+                          Get Started
+                          <ArrowRight className="w-2.5 h-2.5" />
                         </div>
                       </div>
 
-                      <div className="space-y-3">
-                        <div className="phone-widget widget-depth rounded-2xl p-3 flex items-center" data-testid="dashboard-projects-widget">
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-600/5 flex items-center justify-center mr-3 border border-cyan-400/20 shadow-inner">
-                            <Rocket className="w-4 h-4 text-cyan-300 drop-shadow-md" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="text-[11px] font-bold text-white tracking-tight">
-                              140+ Projects Delivered
-                            </div>
-                            <div className="text-[9px] text-cyan-200/40 font-medium">
-                              Web · App · Cloud
-                            </div>
-                          </div>
+                      <div className="phone-widget flex gap-2 mb-3" data-testid="phone-mini-stats">
+                        <div className="flex-1 rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
+                          <span className="counter-val font-display text-base font-extrabold text-slate-900">0</span>
+                          <div className="text-[6px] font-mono uppercase tracking-wider text-cyan-600 font-bold">{metricLabel}</div>
                         </div>
-                        <div className="phone-widget widget-depth rounded-2xl p-3 flex items-center" data-testid="dashboard-clients-widget">
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/5 flex items-center justify-center mr-3 border border-emerald-400/20 shadow-inner">
-                            <ShieldCheck className="w-4 h-4 text-emerald-300 drop-shadow-md" />
-                          </div>
-                          <div className="flex-1">
-                            <div className="text-[11px] font-bold text-white tracking-tight">
-                              98.8% Client Retention
-                            </div>
-                            <div className="text-[9px] text-emerald-200/40 font-medium">
-                              Security-first delivery
-                            </div>
-                          </div>
+                        <div className="flex-1 rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
+                          <span className="font-display text-base font-extrabold text-slate-900">24/7</span>
+                          <div className="text-[6px] font-mono uppercase tracking-wider text-cyan-600 font-bold">Support</div>
                         </div>
                       </div>
 
-                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[120px] h-[4px] bg-white/20 rounded-full shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+                      <div className="phone-widget grid grid-cols-2 gap-2" data-testid="phone-mini-services">
+                        {[
+                          { icon: Globe, label: "Web & App" },
+                          { icon: ShieldCheck, label: "Security" },
+                          { icon: ShoppingCart, label: "E-Commerce" },
+                          { icon: Cloud, label: "Cloud & Ads" },
+                        ].map(({ icon: Icon, label }) => (
+                          <div key={label} className="rounded-xl border border-slate-200 bg-white p-2 shadow-sm flex items-center gap-1.5">
+                            <div className="w-5 h-5 rounded-md bg-cyan-50 border border-cyan-500/20 flex items-center justify-center shrink-0">
+                              <Icon className="w-2.5 h-2.5 text-cyan-600" />
+                            </div>
+                            <span className="text-[8px] font-bold text-slate-800">{label}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[120px] h-[4px] bg-slate-900/20 rounded-full" />
                     </div>
                   </div>
                 </div>

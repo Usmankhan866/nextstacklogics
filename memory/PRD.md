@@ -1,13 +1,17 @@
 # NexStack Logics — Coming Soon Page (PRD)
 
 ## Original Problem Statement
-User started a new full-service tech company named "NexStack Logics" (primary name "NexStack") offering web & app dev, security, e-commerce (Shopify, WordPress, Wix, Squarespace CMS), Meta ads, cloud, and every tech service. They requested a coming soon page built from a provided cinematic GSAP scroll-pinned React hero component (deep-blue premium card, 3D iPhone mockup, film grain, grid overlay, silver-matte type), rebranded for NexStack. Logo: bold rounded "//"-style N mark (black & white versions provided).
+User started a new full-service tech company named "NexStack Logics" (primary name "NexStack") offering web & app dev, security, e-commerce (Shopify, WordPress, Wix, Squarespace CMS), Meta ads, cloud, and every tech service. They requested a coming soon page built from a provided cinematic GSAP scroll-pinned React hero component, rebranded for NexStack. Logo: bold rounded "//"-style N mark (black & white versions provided).
 
 ## User Choices (confirmed via ask_human)
 - Headline: "Empower Today." / "Own Tomorrow."
 - Email "Notify Me" capture wired to backend (collect early leads)
 - Phone mockup shows a NexStack project dashboard (projects delivered, clients, services)
 - No exact launch date — show "Launching Soon"
+
+## Iteration 2 (user feedback)
+- Overall page background switched to WHITE (light theme): dark ink text outside the deep-blue card, light header/marquee/footer, dark "Notify Me" button
+- Phone mockup screen now shows a MOCK OF THE NEXSTACK WEBSITE (mini nav, hero headline, Get Started button, stats, service grid) on a white screen instead of the dashboard
 
 ## Architecture
 - Frontend: React 19 (CRA + craco, `@/` alias) + Tailwind + shadcn conventions

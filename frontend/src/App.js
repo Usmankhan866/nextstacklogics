@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
-      <Toaster position="top-center" theme="dark" richColors />
+      <Toaster position="top-center" theme="light" richColors />
       <CinematicHero />
       <LaunchMarquee />
     </div>
