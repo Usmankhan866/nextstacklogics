@@ -1,0 +1,118 @@
+{
+  "project_name": "NexStack Logics",
+  "brand_identity": {
+    "primary_name": "NexStack",
+    "full_name": "NexStack Logics",
+    "tagline": ["Empower Today.", "Own Tomorrow."],
+    "launch_status": "Launching Soon",
+    "logo_mark": "Bold rounded 'N' mark in stylized SVG container (light and dark variants)",
+    "aesthetic_archetype": "Cinematic High-Tech Luxury & Performance Pro",
+    "core_vibe": "Awwwards-level cinematic dark mode, deep-blue glass card depth, electric neon highlights, film grain textures, precision grid overlays, and interactive GSAP scroll-pinned hero with 3D iPhone mockup."
+  },
+  "typography": {
+    "display_font": "Cabinet Grotesk / Syne / Outfit (sans-serif display with high character and tight tracking)",
+    "body_font": "Plus Jakarta Sans / JetBrains Mono (for tech metrics and body copy)",
+    "font_files_import": "@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');",
+    "hierarchy": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+      "h3_card": "text-xl sm:text-2xl font-semibold tracking-normal",
+      "eyebrow_label": "text-xs uppercase tracking-[0.25em] font-mono font-medium text-cyan-400",
+      "body_text": "text-base sm:text-lg text-slate-300 leading-relaxed",
+      "metric_number": "text-3xl sm:text-4xl lg:text-5xl font-extrabold font-mono text-white tracking-tighter"
+    }
+  },
+  "color_palette": {
+    "theme": "Cinematic Dark Mode",
+    "background_base": "#030712",
+    "background_card_deep_blue": "#0A122C",
+    "background_card_elevated": "#0F1A3A",
+    "electric_accent": "#00F0FF",
+    "electric_accent_hover": "#38BDF8",
+    "glow_blue": "rgba(0, 240, 255, 0.15)",
+    "text_primary": "#F8FAFC",
+    "text_secondary": "#94A3B8",
+    "text_muted": "#64748B",
+    "border_subtle": "rgba(255, 255, 255, 0.08)",
+    "border_highlight": "rgba(0, 240, 255, 0.3)",
+    "gradient_hero": "radial-gradient(ellipse at 50% 0%, rgba(10, 25, 60, 0.8) 0%, rgba(3, 7, 18, 1) 80%)"
+  },
+  "visual_enhancers": {
+    "film_grain": "CSS repeating noise texture with pointer-events-none fixed overlay at 3% opacity",
+    "grid_overlay": "Background linear-gradient grid pattern (30px x 30px grid lines in rgba(255,255,255,0.03))",
+    "glassmorphism": "backdrop-blur-xl bg-[#0A122C]/70 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
+    "tracing_beam": "Glowing electric cyan border stroke with animated gradient transition on scroll and card hover",
+    "glow_effects": "drop-shadow-[0_0_25px_rgba(0,240,255,0.25)] and radial gradient background spotlights"
+  },
+  "hero_and_phone_mockup": {
+    "scroll_pinning": "GSAP ScrollTrigger or Framer Motion scroll-driven progress controlling 3D iPhone rotation and scale",
+    "phone_bezel": "Physical matte-silver chassis with smooth curved bezels, speaker slit, and realistic glass reflection layer",
+    "phone_dashboard_widgets": [
+      {
+        "title": "Projects Delivered",
+        "value": "140+",
+        "metric_growth": "+34% YoY",
+        "category": "Web, App & Enterprise Cloud"
+      },
+      {
+        "title": "Active Clients",
+        "value": "98.8%",
+        "metric_growth": "Retention Rate",
+        "category": "Global Clients"
+      },
+      {
+        "title": "Core Ecosystems",
+        "value": "6 Core Verticals",
+        "category": "Web, Security, Shopify, WordPress, Meta Ads, Cloud"
+      }
+    ]
+  },
+  "service_marquee": {
+    "title": "FULL-STACK TECH CAPABILITIES",
+    "services": [
+      "Web & App Development",
+      "Cybersecurity & Auditing",
+      "Shopify & E-Commerce CMS",
+      "WordPress, Wix & Squarespace",
+      "Meta Ads & Growth Marketing",
+      "Cloud Infrastructure & DevOps",
+      "AI & Automation Pipelines"
+    ]
+  },
+  "email_signup_form": {
+    "purpose": "Collect early lead notifications for launch",
+    "backend_integration": "Connected to FastAPI backend POST /api/subscribe endpoint",
+    "ui_style": "Floating glassmorphic pill bar with electric cyan CTA button ('Notify Me' / 'Get Early Access')",
+    "test_ids": {
+      "form_container": "subscribe-form",
+      "email_input": "subscribe-email-input",
+      "submit_button": "subscribe-submit-button",
+      "success_message": "subscribe-success-message",
+      "error_message": "subscribe-error-message"
+    }
+  },
+  "image_urls": {
+    "tech_network_bg": "https://images.unsplash.com/photo-1680445530435-100993db6c67?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwyfHxjeWJlcnB1bmslMjBzZXJ2ZXIlMjByb29tJTIwZGFyayUyMGJsdWUlMjBsaWdodGluZyUyMHRlY2glMjBuZXR3b3JrfGVufDB8fHx8MTc5MTE1NDcxNnww&ixlib=rb-4.1.0&q=85",
+    "data_center_illumination": "https://images.unsplash.com/photo-1752742111841-f490c48aa668?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwxfHxjeWJlcnB1bmslMjBzZXJ2ZXIlMjByb29tJTIwZGFyayUyMGJsdWUlMjBsaWdodGluZyUyMHRlY2glMjBuZXR3b3JrfGVufDB8fHx8MTc5MTE1NDcxNnww&ixlib=rb-4.1.0&q=85"
+  },
+  "data_test_ids": {
+    "header_logo": "brand-logo",
+    "nav_launch_badge": "nav-launch-badge",
+    "hero_headline": "hero-headline",
+    "hero_tagline": "hero-tagline",
+    "phone_mockup": "phone-mockup-container",
+    "dashboard_stats_widget": "dashboard-stats-widget",
+    "service_marquee_list": "service-marquee",
+    "notify_email_input": "subscribe-email-input",
+    "notify_submit_btn": "subscribe-submit-button",
+    "services_grid": "services-overview-grid"
+  },
+  "instructions_to_main_agent": [
+    "Import Outfit, Plus Jakarta Sans, and JetBrains Mono in index.css or App.js.",
+    "Implement the cinematic GSAP / Lenis / Framer Motion scroll-driven animation for the iPhone 3D mockup.",
+    "Style all primary cards using deep blue (#0A122C) with thin glowing electric borders and subtle glass overlay.",
+    "Ensure every interactive input, button, and widget card includes explicit data-testid attributes.",
+    "Wire the 'Notify Me' email form to POST to the FastAPI backend with sonner toast feedback for success/failure.",
+    "Use raw HTML and Tailwind CSS for marketing layouts, avoiding standard Vercel default styling."
+  ]
+}
