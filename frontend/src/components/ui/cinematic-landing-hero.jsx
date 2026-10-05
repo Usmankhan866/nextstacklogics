@@ -319,7 +319,7 @@ export const CinematicHero = ({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=4500",
+          end: "+=3200",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -375,7 +375,7 @@ export const CinematicHero = ({
           { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 },
           "<"
         )
-        .to({}, { duration: 1.2 })
+        .to({}, { duration: 0.8 })
         .set(".hero-text-wrapper", { autoAlpha: 0 })
         .set(".cta-wrapper", { autoAlpha: 1 })
         .to({}, { duration: 0.6 })
