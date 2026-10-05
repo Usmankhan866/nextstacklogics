@@ -12,9 +12,7 @@ import urllib.request
 import urllib.error
 from email.message import EmailMessage
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict, EmailStr
-from typing import List
-import uuid
+from pydantic import BaseModel, EmailStr
 from datetime import datetime, timezone
 
 
@@ -120,16 +118,6 @@ app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
 
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-
-class StatusCheckCreate(BaseModel):
-    client_name: str
-
 class SubscribeRequest(BaseModel):
     email: EmailStr
 
@@ -146,22 +134,6 @@ ALREADY_REGISTERED = {
 @api_router.get("/")
 def root():
     return {"message": "Hello World"}
-
-@api_router.post("/status", response_model=StatusCheck)
-def create_status_check(input: StatusCheckCreate):
-    status_obj = StatusCheck(**input.model_dump())
-    doc = status_obj.model_dump()
-    doc['timestamp'] = doc['timestamp'].isoformat()
-    db.status_checks.insert_one(doc)
-    return status_obj
-
-@api_router.get("/status", response_model=List[StatusCheck])
-def get_status_checks():
-    status_checks = list(db.status_checks.find({}, {"_id": 0}).limit(1000))
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    return status_checks
 
 @api_router.post("/subscribe")
 def subscribe(request: SubscribeRequest):
