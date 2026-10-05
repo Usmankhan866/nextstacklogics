@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import CinematicHero from "@/components/ui/cinematic-landing-hero";
 import LaunchMarquee from "@/components/LaunchMarquee";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 import { Toaster } from "sonner";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,6 +27,7 @@ function App() {
       <Toaster position="top-center" theme="light" richColors />
       <CinematicHero />
       <LaunchMarquee />
+      <WhatsAppWidget />
     </div>
   );
 }

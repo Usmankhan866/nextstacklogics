@@ -465,17 +465,21 @@ export const CinematicHero = ({
 
       {/* BACKGROUND LAYER: Hero Texts */}
       <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4 will-change-transform transform-style-3d">
-        <h1
-          data-testid="hero-headline"
-          className="text-track gsap-reveal text-3d-matte font-display text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tight mb-2"
-        >
-          {tagline1}
-        </h1>
-        <h1
-          data-testid="hero-tagline"
-          className="text-days gsap-reveal text-silver-matte font-display text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tight"
-        >
-          {tagline2}
+        {/* One h1 for search engines: brand name (screen-reader/crawler only) + both tagline lines */}
+        <h1 className="m-0">
+          <span className="sr-only">NexStack Logics: </span>
+          <span
+            data-testid="hero-headline"
+            className="text-track gsap-reveal text-3d-matte font-display text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tight mb-2 block"
+          >
+            {tagline1}
+          </span>
+          <span
+            data-testid="hero-tagline"
+            className="text-days gsap-reveal text-silver-matte font-display text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tight block"
+          >
+            {tagline2}
+          </span>
         </h1>
       </div>
 

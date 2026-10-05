@@ -1,5 +1,22 @@
 import { motion } from "framer-motion";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 import { NexMark } from "@/components/NexMark";
+import { WhatsAppIcon } from "@/components/WhatsAppWidget";
+
+const XIcon = ({ className = "" }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z" />
+  </svg>
+);
+
+// Placeholder URLs until the real profiles are live.
+const SOCIALS = [
+  { label: "LinkedIn", href: "#", Icon: Linkedin },
+  { label: "Instagram", href: "#", Icon: Instagram },
+  { label: "Facebook", href: "#", Icon: Facebook },
+  { label: "X (Twitter)", href: "#", Icon: XIcon },
+  { label: "WhatsApp", href: "https://wa.me/61470492564", Icon: WhatsAppIcon, external: true },
+];
 
 const SERVICES = [
   "Web & App Development",
@@ -51,6 +68,20 @@ export const LaunchMarquee = () => {
             © {new Date().getFullYear()} NexStack Logics. All rights reserved.
           </span>
         </div>
+        <nav aria-label="Social media" className="flex items-center gap-2" data-testid="footer-socials">
+          {SOCIALS.map(({ label, href, Icon, external }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              title={label}
+              {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-900/10 text-slate-500 transition hover:border-cyan-600/40 hover:bg-cyan-50 hover:text-cyan-700"
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ))}
+        </nav>
         <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-slate-400">
           Empower Today. Own Tomorrow.
         </span>
