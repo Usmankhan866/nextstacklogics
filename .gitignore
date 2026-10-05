@@ -27,10 +27,15 @@ next-env.d.ts
 
 # Production builds
 /build
+frontend/build/
 dist/
 dist
 
 # Environment files (comprehensive coverage)
+.env
+.env.*
+!.env.example
+*.env
 
 *token.json*
 *credentials.json*

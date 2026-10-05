@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#030712"/>
-  <path d="M21 45L33 19" stroke="#F8FAFC" stroke-width="11" stroke-linecap="round"/>
-  <path d="M33 45L45 19" stroke="#F8FAFC" stroke-width="11" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="190 190 370 370">
+  <style>g{fill:#0F172A;stroke:#0F172A}@media (prefers-color-scheme: dark){g{fill:#F8FAFC;stroke:#F8FAFC}}</style>
+  <g stroke-width="40" stroke-linejoin="round">
+    <polygon points="214,375.85 376,234.1 376,348.9 214,490.65"/>
+    <polygon points="374,398.85 536,257.1 536,371.9 374,513.65"/>
+  </g>
 </svg>
