@@ -1,17 +1,15 @@
 export const NexMark = ({ className = "w-6 h-6" }) => (
-  <svg viewBox="0 0 64 64" className={className} fill="none" aria-hidden="true">
-    <path
-      d="M21 45L33 19"
-      stroke="currentColor"
-      strokeWidth="11"
-      strokeLinecap="round"
-    />
-    <path
-      d="M33 45L45 19"
-      stroke="currentColor"
-      strokeWidth="11"
-      strokeLinecap="round"
-    />
+  <svg
+    viewBox="190 190 370 370"
+    className={className}
+    fill="currentColor"
+    stroke="currentColor"
+    strokeWidth="40"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <polygon points="214,375.85 376,234.1 376,348.9 214,490.65" />
+    <polygon points="374,398.85 536,257.1 536,371.9 374,513.65" />
   </svg>
 );
 

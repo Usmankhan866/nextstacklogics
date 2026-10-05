@@ -15,10 +15,12 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NexMark } from "@/components/NexMark";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+// Same-origin "/api" in production (Vercel); set REACT_APP_BACKEND_URL locally to point at uvicorn.
+const API = `${process.env.REACT_APP_BACKEND_URL || ""}/api`;
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }
@@ -70,11 +72,11 @@ const INJECTED_STYLES = `
   }
 
   .premium-depth-card {
-      background: linear-gradient(145deg, #162C6D 0%, #0A101D 100%);
+      background: linear-gradient(145deg, #1A1A1A 0%, #0D0D0D 100%);
       box-shadow:
           0 40px 100px -20px rgba(0, 0, 0, 0.9),
           0 20px 40px -20px rgba(0, 0, 0, 0.8),
-          inset 0 1px 2px rgba(255, 255, 255, 0.2),
+          inset 0 1px 1px rgba(255, 255, 255, 0.06),
           inset 0 -2px 4px rgba(0, 0, 0, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.04);
       position: relative;
@@ -82,7 +84,7 @@ const INJECTED_STYLES = `
 
   .card-sheen {
       position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 50;
-      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06) 0%, transparent 40%);
+      background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.03) 0%, transparent 40%);
       mix-blend-mode: screen; transition: opacity 0.3s ease;
   }
 
@@ -199,6 +201,26 @@ export const CinematicHero = ({
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
   const [feedback, setFeedback] = useState("");
+  const logoRef = useRef(null);
+  const [logoOnDark, setLogoOnDark] = useState(false);
+
+  // Flip the brand logo to pure white while the dark card sits behind it, pure black otherwise.
+  useEffect(() => {
+    let frame;
+    const check = () => {
+      const card = mainCardRef.current?.getBoundingClientRect();
+      const logo = logoRef.current?.getBoundingClientRect();
+      if (card && logo) {
+        const x = logo.left + logo.width / 2;
+        const y = logo.top + logo.height / 2;
+        const covered = x >= card.left && x <= card.right && y >= card.top && y <= card.bottom;
+        setLogoOnDark((prev) => (prev === covered ? prev : covered));
+      }
+      frame = requestAnimationFrame(check);
+    };
+    frame = requestAnimationFrame(check);
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
@@ -211,9 +233,11 @@ export const CinematicHero = ({
       setFeedback(data.message);
       toast.success(data.message);
     } catch (err) {
-      const msg =
-        err?.response?.data?.detail ||
-        "Something went wrong. Please try again.";
+      const detail = err?.response?.data?.detail;
+      let msg = "Something went wrong. Please try again.";
+      if (typeof detail === "string") msg = detail;
+      else if (err?.response?.status === 422) msg = "Please enter a valid email address.";
+      else if (!err?.response) msg = "Can't reach the server right now. Please try again shortly.";
       setStatus("error");
       setFeedback(msg);
       toast.error(msg);
@@ -295,7 +319,7 @@ export const CinematicHero = ({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=7000",
+          end: "+=4500",
           pin: true,
           scrub: 1,
           anticipatePin: 1,
@@ -304,7 +328,7 @@ export const CinematicHero = ({
 
       scrollTl
         .to(
-          [".hero-text-wrapper", ".bg-grid-theme"],
+          [".hero-text-wrapper", ".bg-grid-theme", ".bg-dot-theme"],
           { scale: 1.15, filter: "blur(20px)", opacity: 0.2, ease: "power2.inOut", duration: 2 },
           0
         )
@@ -351,10 +375,10 @@ export const CinematicHero = ({
           { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 },
           "<"
         )
-        .to({}, { duration: 2.5 })
+        .to({}, { duration: 1.2 })
         .set(".hero-text-wrapper", { autoAlpha: 0 })
         .set(".cta-wrapper", { autoAlpha: 1 })
-        .to({}, { duration: 1.5 })
+        .to({}, { duration: 0.6 })
         .to(
           [".mockup-scroll-wrapper", ".floating-badge", ".card-left-text", ".card-right-text"],
           {
@@ -406,22 +430,27 @@ export const CinematicHero = ({
         aria-hidden="true"
       />
       <div className="bg-grid-theme absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
+      <DotPattern className="bg-dot-theme z-0 fill-neutral-400/70 [mask-image:radial-gradient(ellipse_at_center,white_0%,transparent_70%)]" />
 
       {/* Fixed brand header */}
-      <header className="fixed top-0 inset-x-0 z-[60] flex items-center justify-between px-5 md:px-10 py-4 pointer-events-none">
-        <div data-testid="brand-logo" className="flex items-center gap-3 pointer-events-auto">
-          <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 backdrop-blur-xl flex items-center justify-center shadow-md shadow-slate-900/10">
-            <NexMark className="w-5 h-5 text-slate-900" />
+      {/* Brand logo: pure black on light backgrounds, pure white over the dark card */}
+      <div
+        ref={logoRef}
+        data-testid="brand-logo"
+        className={`fixed top-0 left-0 z-[60] flex items-center gap-3 px-5 md:px-10 h-[66px] pointer-events-auto transition-colors duration-300 ${logoOnDark ? "text-white" : "text-black"}`}
+      >
+        <NexMark className="w-9 h-9" />
+        <div className="leading-tight">
+          <div className="font-display font-extrabold tracking-tight text-base">
+            NexStack
           </div>
-          <div className="leading-tight">
-            <div className="font-display font-extrabold tracking-tight text-slate-900 text-base">
-              NexStack
-            </div>
-            <div className="text-[9px] font-mono uppercase tracking-[0.3em] text-cyan-600">
-              Logics
-            </div>
+          <div className="text-[9px] font-mono uppercase tracking-[0.3em]">
+            Logics
           </div>
         </div>
+      </div>
+
+      <header className="fixed top-0 right-0 z-[60] flex items-center justify-end h-[66px] px-5 md:px-10 pointer-events-none">
         <div
           data-testid="nav-launch-badge"
           className="pointer-events-auto inline-flex items-center gap-2.5 rounded-full border border-slate-200 bg-white/80 backdrop-blur-xl px-4 py-2 text-[10px] font-mono uppercase tracking-[0.25em] text-slate-700 shadow-md shadow-slate-900/5"
