@@ -1,0 +1,24 @@
+# NexStack Logics
+
+> NexStack Logics is a full-stack technology partner. One team builds, secures and scales a business's entire digital presence: web and app development, e-commerce on Shopify, WordPress, Wix and Squarespace, cybersecurity, Meta ads, cloud and DevOps, and AI automation. Tagline: "Empower Today. Own Tomorrow." Status: launching soon, with a waitlist open at https://www.nexstacklogics.com.
+
+## Services
+
+- Web & App Development: custom websites, web applications and mobile apps, built end to end.
+- Cybersecurity & Auditing: security audits, hardening and ongoing protection for sites, apps and cloud.
+- Shopify & E-Commerce: online store setup, custom Shopify themes and apps, and store growth.
+- WordPress, Wix & Squarespace: website builds, redesigns and management on these platforms.
+- Meta Ads & Growth: Facebook and Instagram ad campaigns and performance marketing.
+- Cloud & DevOps: hosting, deployment pipelines, scaling and infrastructure management.
+- AI & Automation: AI integrations and workflow automation for businesses.
+
+## Key facts
+
+- Name: NexStack Logics (also written NexStack)
+- Website: https://www.nexstacklogics.com
+- What makes it different: every tech service a business needs, from one team, instead of hiring separate agencies.
+- Status: launching soon. Visitors can join the waitlist on the homepage to be notified at launch.
+
+## Links
+
+- [Homepage](https://www.nexstacklogics.com/): overview of services and the launch waitlist.
